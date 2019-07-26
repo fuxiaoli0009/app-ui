@@ -99,8 +99,8 @@
         <div class="row">
 	        <div class="col-lg-12">
 	            <div class="content-box">
-	            	<div class="head head-with-btns clearfix">
-	              		<h5 class="content-title text-color pull-left">Total sales statistics</h5>
+	            	<div class="head head-border danger-color">
+              			<h5 class="content-title danger-color">Total sales statistics</h5>
 		            </div>
 		            <div class="content">
 		                <div id="js-legend" class="chart-legend"></div>
@@ -215,7 +215,7 @@
 		</div>
 		
     </div>
-    <footer class="page-footer">abc</footer>
+    <footer id="source" class="page-footer">abc</footer>
   </div>
   <script src="bower_components/jquery/dist/jquery.min.js"></script>
   <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
@@ -426,6 +426,7 @@
                         {data: d, color: '#fff' }
                     ], options2);
                 }
+                $("#source").text(json.source);
             }
         });
       var ctx = document.getElementById("chart-line").getContext("2d");
