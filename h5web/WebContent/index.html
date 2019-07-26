@@ -74,14 +74,14 @@
          		<div class="content-box">
             		<div class="content">
 		                <button id="szRatePercent" type="button" class="btn btn-primary btn-lg"></button>
-		                <button id="hsAverageRatePercent" type="button" class="btn btn-success btn-lg"></button>
+		                <button id="hsAverageRatePercent" type="button" class="btn btn-success btn-lg"></button></br>
+		                <button id="czRatePercent" type="button" class="btn btn-danger btn-lg"></button>
 		                <button id="starAverageRatePercent" type="button" class="btn btn-warning btn-lg"></button>
-		                <button id="starAverageRatePercent2" type="button" class="btn btn-danger btn-lg"></button>
 		            </div>
 		        </div>
             </div>
         </div>
-    
+        
     	<div class="row">
         	<div class="col-lg-12 col-md-3">
           		<div class="content-box success-bg white">
@@ -116,9 +116,9 @@
 	    <div class="row">
 	        <div class="col-lg-12">
 	            <div class="content-box">
-	            	<div class="head head-with-btns clearfix">
-	              		<h5 class="content-title text-color pull-left">Exchange rates</h5>
-	              	</div>
+	            	<div class="head head-border danger-color">
+              			<h5 class="content-title danger-color">沪深市场</h5>
+            		</div>
 		            <div class="table-responsive">
 		                <table class="table table-striped">
 		                <thead>
@@ -144,9 +144,9 @@
 	    <div class="row">
 	        <div class="col-lg-12">
 	            <div class="content-box">
-	            	<div class="head head-with-btns clearfix">
-	              		<h5 class="content-title text-color pull-left">Exchange rates</h5>
-	              	</div>
+	            	<div class="head head-border danger-color">
+              			<h5 class="content-title danger-color">科创板</h5>
+            		</div>
 		            <div class="table-responsive">
 		                <table class="table table-striped">
 		                  <thead>
@@ -172,9 +172,9 @@
 	    <div class="row">
 	        <div class="col-lg-12">
 	            <div class="content-box">
-	            	<div class="head head-with-btns clearfix">
-	              		<h5 class="content-title text-color pull-left">Exchange rates</h5>
-	              	</div>
+	            	<div class="head head-border danger-color">
+              			<h5 class="content-title danger-color">香港市场</h5>
+            		</div>
 		            <div class="table-responsive">
 		                <table class="table table-striped">
 		                  <thead>
@@ -196,8 +196,26 @@
             	</div>
             </div>
 	    </div>
+	    
+	    <div class="row">
+        	<div class="col-md-12">
+         		<div class="content-box">
+         			<div class="head head-border danger-color">
+              			<h5 class="content-title danger-color">Excel上传数据</h5>
+            		</div>
+            		<div class="content">
+				        <form method="post" enctype="multipart/form-data" id="form" action="http://118.24.211.79:8081/excel/parse">
+						    <input type="file" name="filename"/>
+						    <input type="submit" value="提交上传"/>
+						</form>
+						格式：type、code、name、maxValue
+				    </div>
+				</div>
+			</div>
+		</div>
+		
     </div>
-    <footer class="page-footer">dsfsd</footer>
+    <footer class="page-footer">abc</footer>
   </div>
   <script src="bower_components/jquery/dist/jquery.min.js"></script>
   <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
@@ -216,6 +234,7 @@
   <script>
   	//var homeUrl = "http://10.5.35.12:8081/api/";
   	var homeUrl = "http://39.105.142.63:8081/api/";
+  	
     var lineChartData = {
     	labels : ["1","2","3","4","5","6"],
         datasets : [
@@ -244,9 +263,38 @@
                 data : [1210,1150,1143,1110,1090,1290]
             }
         ]
-
     }
 
+    var options2 = {
+            series: {
+              shadowSize: 5,
+              label: "Qty",
+              lines: {
+                  show: true,
+                  lineWidth: 2
+              }
+            },
+            grid: {
+              margin: 10,
+              show: false,
+              hoverable: true,
+              clickable: false
+            },
+            legend: {
+              show: false
+            },
+            tooltip: {
+              show: true,
+              cssClass: "flot-tooltip",
+              defaultTheme: false,
+              content: '%y.2',
+              shifts: {
+                  x: 1,
+                  y: -45
+              }
+            }
+        };
+    
     //判断是移动设备还是PC
     function isPC() {
     	var userAgentInfo = navigator.userAgent;
@@ -291,7 +339,8 @@
         });
     }
     
-    function deleteStock(code){
+    function deleteStock(tdObject){
+    	var code = tdObject.attr("id");
         var statu = confirm("确认删除【"+code+"】"+"?");
         if(!statu){
             return false;
@@ -324,7 +373,7 @@
             	html += '<td>' + obj.maxRate +'</td>';
             	html += '<td>' + obj.ratePercent +'</td>';
             	html += '<td><small><a href="'+obj.PBPEUrl+'" target="_blank">PE/PB</a></small></td>';
-            	html += '<td><small><button type="button" class="btn btn-primary btn-xs" onclick="deleteStock('+obj.code+')">删除</button></small></td>';
+            	html += '<td><small><button id=' + obj.code +'  type="button" class="btn btn-primary btn-xs" onclick="deleteStock($(this))">删除</button></small></td>';
             	html += '</tr>';
         	}
         	if(isPc){
@@ -332,6 +381,14 @@
         	}
         });
     	return html;
+    }
+    
+    function getStarCloseIndexs(closeIndexs){
+    	var d = [];
+    	$.each(closeIndexs, function(i, obj) {
+    		d.push([i, parseInt(obj)]);
+    	});
+    	return d;
     }
     
     window.onload = function(){
@@ -346,19 +403,29 @@
             	var hsAverageRatePercent = json.hsAverageRatePercent;
             	var starAverageRatePercent = json.starAverageRatePercent;
             	var szRatePercent = json.szRatePercent;
+            	var czRatePercent = json.czRatePercent;
             	var hsStocks = json.hsStocks;
             	var hkStocks = json.hkStocks;
             	var starStocks = json.starStocks;
-            	$("#szRatePercent").text(szRatePercent);
-            	$("#hsAverageRatePercent").text(hsAverageRatePercent);
-            	$("#starAverageRatePercent").text(starAverageRatePercent);
-            	$("#starAverageRatePercent2").text(starAverageRatePercent);
+            	var starCloseIndexs = json.starCloseIndexs;
+            	console.log(starCloseIndexs);
+            	$("#szRatePercent").text("上证 "+szRatePercent);
+            	$("#czRatePercent").text("创指 "+czRatePercent);
+            	$("#hsAverageRatePercent").text("自选 "+hsAverageRatePercent);
+            	$("#starAverageRatePercent").text("科创 "+starAverageRatePercent);
             	var html = getHtml(hsStocks);
                 $("#hsStocks").html(html);
                 html = getHtml(hkStocks);
                 $("#hkStocks").html(html);
                 html = getHtml(starStocks);
                 $("#starStocks").html(html);
+                var d = [];
+                d = getStarCloseIndexs(starCloseIndexs);
+                if ($("#line-chart-4")[0]) {
+                    $.plot($("#line-chart-4"), [
+                        {data: d, color: '#fff' }
+                    ], options2);
+                }
             }
         });
       var ctx = document.getElementById("chart-line").getContext("2d");
@@ -376,58 +443,6 @@
   }
 
   </script>
-  <script>
-  $(function () {
-      var d4 = [];
-      for (var i = 0; i <= 50; i += 1) {
-          d4.push([i, parseInt(Math.random() * 100)]);
-      }
-      var d3 = [];
-      for (var i = 0; i <= 50; i += 1) {
-          d3.push([i, parseInt(Math.random() * 100)]);
-      }
-
-      var options2 = {
-          series: {
-            shadowSize: 5,
-            label: "Qty",
-            lines: {
-                show: true,
-                lineWidth: 2
-            }
-          },
-          grid: {
-            margin: 10,
-            show: false,
-            hoverable: true,
-            clickable: false
-          },
-          legend: {
-            show: false
-          },
-          tooltip: {
-            show: true,
-            cssClass: "flot-tooltip",
-            defaultTheme: false,
-            content: '%y.2',
-            shifts: {
-                x: 1,
-                y: -45
-            }
-          }
-      };
-
-      if ($("#line-chart-4")[0]) {
-          $.plot($("#line-chart-4"), [
-              {data: d4, color: '#fff' },
-              {data: d3, color: '#eee' }
-          ], options2);
-      }
-
-  });
-  </script>
-    <script src="js/common.js"></script>
- 
-
+  <script src="js/common.js"></script>
 </body>
 </html>
