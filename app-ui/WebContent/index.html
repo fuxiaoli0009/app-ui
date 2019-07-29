@@ -70,37 +70,27 @@
     <div class="container-fluid">
     
         <div class="row">
-        	<div class="col-md-12">
-         		<div class="content-box">
+	        <div class="col-lg-12">
+	            <div class="content-box">
+	            	<div class="head success-bg clearfix">
+              			<h5 class="content-title pull-left">今日涨跌</h5>
+              		</div>
             		<div class="content">
-		                <button id="szRatePercent" type="button" class="btn btn-primary btn-lg"></button>
-		                <button id="hsAverageRatePercent" type="button" class="btn btn-success btn-lg"></button></br>
-		                <button id="czRatePercent" type="button" class="btn btn-danger btn-lg"></button>
-		                <button id="starAverageRatePercent" type="button" class="btn btn-warning btn-lg"></button>
+            			<button id="szRatePercent" type="button" class="btn btn-primary"/>
+		                <button id="hsAverageRatePercent" type="button" class="btn btn-success"></button>
+		                <button id="czRatePercent" type="button" class="btn btn-danger"></button>
+		                <button id="starAverageRatePercent" type="button" class="btn btn-warning"></button>
 		            </div>
 		        </div>
             </div>
         </div>
         
-    	<div class="row">
-        	<div class="col-lg-12 col-md-3">
-          		<div class="content-box success-bg white">
-	            	<div class="head clearfix">
-	              		<h5 class="content-title pull-left">Visitors</h5>
-	            	</div>
-	            	<div class="content">
-	              		<div id="line-chart-4" class="flot-chart"></div>
-	            	</div>
-	          	</div>
-	        </div>
-      	</div>
-    
     	<!-- 第二个容器 -->
         <div class="row">
 	        <div class="col-lg-12">
 	            <div class="content-box">
-	            	<div class="head head-border danger-color">
-              			<h5 class="content-title danger-color">Total sales statistics</h5>
+	            	<div class="head info-bg clearfix">
+              			<h5 class="content-title pull-left">科创</h5>
 		            </div>
 		            <div class="content">
 		                <div id="js-legend" class="chart-legend"></div>
@@ -111,97 +101,100 @@
 		        </div>
 		    </div>
 		</div>
+		
+		<div class="row">
+		  <div class="col-md-12">
+            <div class="content-box">
+            	<div class="head primary-bg clearfix">
+            		<h5 class="content-title pull-left">汇总信息</h5>
+		        </div>
+                <div class="m-b-20">
+                    <ul class="nav nav-tabs">
+                      <li class="active">
+                        <a href="#tab-11" data-toggle="tab">沪深</a>
+                      </li>
+                      <li>
+                        <a href="#tab-12" data-toggle="tab">科创</a>
+                      </li>
+                      <li>
+                        <a href="#tab-13" data-toggle="tab">港股</a>
+                      </li>
+                    </ul>
+                    <div class="tab-content">
+                      <div class="tab-pane fade in active" id="tab-11">
+                        <div class="table-responsive">
+			                <table class="table table-striped">
+			                <thead>
+			                    <tr>
+			                      <th>名称</th>
+				                  <th>最新</th>
+				                  <th>期望</th>
+				                  <th>还差</th>
+				                  <th>跌幅</th>
+				                  <th>涨跌</th>
+				                  <th>PB/PE</th>
+				                  <th>操作</th>
+				                  <th>代码</th>
+			                    </tr>
+		                    </thead>
+		                    <tbody id = "hsStocks">
+		                    </tbody>
+		                    </table>
+		              	</div>
+                      </div>
+                      <div class="tab-pane fade" id="tab-12">
+                        <div class="table-responsive">
+		                	<table class="table table-striped">
+		                    <thead>
+		                    	<tr>
+		                          <th>名称</th>
+			                  	  <th>最新</th>
+			                  	  <th>期望</th>
+			                  	  <th>还差</th>
+			                  	  <th>跌幅</th>
+			                  	  <th>涨跌</th>
+			                  	  <th>PB/PE</th>
+			                  	  <th>操作</th>
+			                  	  <th>代码</th>
+		                        </tr>
+		                    </thead>
+		                    <tbody id = "starStocks">
+		                    </tbody>
+		                    </table>
+		            	</div>
+                      </div>
+                      <div class="tab-pane fade" id="tab-13">
+						<div class="table-responsive">
+		                	<table class="table table-striped">
+		                    <thead>
+		                      	<tr>
+			                      <th>名称</th>
+				                  <th>最新</th>
+				                  <th>期望</th>
+				                  <th>还差</th>
+				                  <th>跌幅</th>
+				                  <th>涨跌</th>
+				                  <th>PB/PE</th>
+				                  <th>操作</th>
+				                  <th>代码</th>
+			                    </tr>
+			                </thead>
+		                    <tbody id = "hkStocks">
+		                    </tbody>
+		                    </table>
+		                </div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+          </div>
+    	</div>
     	
-    	<!-- 第一个容器 : hsStocks-->
-	    <div class="row">
-	        <div class="col-lg-12">
-	            <div class="content-box">
-	            	<div class="head head-border danger-color">
-              			<h5 class="content-title danger-color">沪深市场</h5>
-            		</div>
-		            <div class="table-responsive">
-		                <table class="table table-striped">
-		                <thead>
-		                    <tr>
-		                      <th>名称</th>
-			                  <th>最新</th>
-			                  <th>期望</th>
-			                  <th>还差</th>
-			                  <th>跌幅</th>
-			                  <th>涨跌</th>
-			                  <th>PB/PE</th>
-			                  <th>操作</th>
-		                    </tr>
-		                  </thead>
-		                  <tbody id = "hsStocks">
-		                  </tbody>
-		                </table>
-		            </div>
-            	</div>
-            </div>
-	    </div>
-	    <!-- 第二个容器 : starStocks-->
-	    <div class="row">
-	        <div class="col-lg-12">
-	            <div class="content-box">
-	            	<div class="head head-border danger-color">
-              			<h5 class="content-title danger-color">科创板</h5>
-            		</div>
-		            <div class="table-responsive">
-		                <table class="table table-striped">
-		                  <thead>
-		                    <tr>
-		                      <th>名称</th>
-			                  <th>最新</th>
-			                  <th>期望</th>
-			                  <th>还差</th>
-			                  <th>跌幅</th>
-			                  <th>涨跌</th>
-			                  <th>PB/PE</th>
-			                  <th>操作</th>
-		                    </tr>
-		                  </thead>
-		                  <tbody id = "starStocks">
-		                  </tbody>
-		                </table>
-		            </div>
-            	</div>
-            </div>
-	    </div>
-	    <!-- 第三个容器 : hkStocks-->
-	    <div class="row">
-	        <div class="col-lg-12">
-	            <div class="content-box">
-	            	<div class="head head-border danger-color">
-              			<h5 class="content-title danger-color">香港市场</h5>
-            		</div>
-		            <div class="table-responsive">
-		                <table class="table table-striped">
-		                  <thead>
-		                    <tr>
-		                      <th>名称</th>
-			                  <th>最新</th>
-			                  <th>期望</th>
-			                  <th>还差</th>
-			                  <th>跌幅</th>
-			                  <th>涨跌</th>
-			                  <th>PB/PE</th>
-			                  <th>操作</th>
-		                    </tr>
-		                  </thead>
-		                  <tbody id = "hkStocks">
-		                  </tbody>
-		                </table>
-		            </div>
-            	</div>
-            </div>
-	    </div>
-	    
 	    <div class="row">
         	<div class="col-md-12">
          		<div class="content-box">
-         			<div class="head head-border danger-color">
-              			<h5 class="content-title danger-color">Excel上传数据</h5>
+         			<div class="head danger-bg clearfix">
+              			<h5 class="content-title pull-left">Excel上传数据</h5>
             		</div>
             		<div class="content">
 				        <form method="post" enctype="multipart/form-data" id="form" action="http://118.24.211.79:8081/excel/parse">
@@ -234,67 +227,7 @@
   <script>
   	//var homeUrl = "http://10.5.35.12:8081/api/";
   	var homeUrl = "http://39.105.142.63:8081/api/";
-  	
-    var lineChartData = {
-    	labels : ["1","2","3","4","5","6"],
-        datasets : [
-            {
-                fillColor : "rgba(73, 206, 255, 0.5)",
-                strokeColor : "rgba(73, 206, 255, 0.7)",
-                pointColor : "rgba(73, 206, 255, 0.9)",
-                pointStrokeColor : "#fff",
-                pointHighlightFill : "rgba(255, 193, 7, 1)",
-                data : [1768,1650,1443,1410,1590,1790]
-            },
-            {
-                fillColor : "rgba(255, 187, 51, 0.5)",
-                strokeColor : "rgba(255, 187, 51, 0.7)",
-                pointColor : "rgba(255, 187, 51, 0.9)",
-                pointStrokeColor : "#fff",
-                pointHighlightFill : "rgba(244, 67, 54, 1)",
-                data : [1010,1050,1043,1010,990,1190]
-            },
-            {
-                fillColor : "rgba(153, 204, 0, 0.5)",
-                strokeColor : "rgba(153, 204, 0, 0.7)",
-                pointColor : "rgba(153, 204, 0, 0.9)",
-                pointStrokeColor : "#fff",
-                pointHighlightFill : "rgba(33, 150, 243, 1)",
-                data : [1210,1150,1143,1110,1090,1290]
-            }
-        ]
-    }
 
-    var options2 = {
-            series: {
-              shadowSize: 5,
-              label: "Qty",
-              lines: {
-                  show: true,
-                  lineWidth: 2
-              }
-            },
-            grid: {
-              margin: 10,
-              show: false,
-              hoverable: true,
-              clickable: false
-            },
-            legend: {
-              show: false
-            },
-            tooltip: {
-              show: true,
-              cssClass: "flot-tooltip",
-              defaultTheme: false,
-              content: '%y.2',
-              shifts: {
-                  x: 1,
-                  y: -45
-              }
-            }
-        };
-    
     //判断是移动设备还是PC
     function isPC() {
     	var userAgentInfo = navigator.userAgent;
@@ -374,6 +307,11 @@
             	html += '<td>' + obj.ratePercent +'</td>';
             	html += '<td><small><a href="'+obj.PBPEUrl+'" target="_blank">PE/PB</a></small></td>';
             	html += '<td><small><button id=' + obj.code +'  type="button" class="btn btn-primary btn-xs" onclick="deleteStock($(this))">删除</button></small></td>';
+            	if(isPc){
+            		html += '<td rowspan="2">' + obj.code +'</td>';
+            	}else{
+            		html += '<td>' + obj.code +'</td>';
+            	}
             	html += '</tr>';
         	}
         	if(isPc){
@@ -383,12 +321,15 @@
     	return html;
     }
     
+    var data = [];
+    var labels = [];
+    
     function getStarCloseIndexs(closeIndexs){
-    	var d = [];
     	$.each(closeIndexs, function(i, obj) {
-    		d.push([i, parseInt(obj)]);
+    		data.push(parseInt(obj));
+    		labels.push('');
     	});
-    	return d;
+    	return data;
     }
     
     window.onload = function(){
@@ -419,28 +360,31 @@
                 $("#hkStocks").html(html);
                 html = getHtml(starStocks);
                 $("#starStocks").html(html);
-                var d = [];
-                d = getStarCloseIndexs(starCloseIndexs);
-                if ($("#line-chart-4")[0]) {
-                    $.plot($("#line-chart-4"), [
-                        {data: d, color: '#fff' }
-                    ], options2);
-                }
+                var data = getStarCloseIndexs(starCloseIndexs);
+                var lineChartData = {
+                    labels : labels,
+                    datasets : [
+                    {
+                        fillColor : "rgba(73, 206, 255, 1)",     //阴影颜色
+                        pointColor : "rgba(73, 206, 255, 1)",    //曲线颜色
+                        pointStrokeColor : "#fff",
+                        pointHighlightFill : "rgba(255, 193, 7, 1)",
+                        data : data
+                    }
+                    ]
+                };
+                var ctx = document.getElementById("chart-line").getContext("2d");
+                var myLine = new Chart(ctx).Line(lineChartData, {
+                  scaleShowVerticalLines: false,
+                  datasetStrokeWidth : 2,
+                  pointDotRadius : 0,
+                  responsive: true,
+                });
+                document.getElementById('js-legend').innerHTML = myLine.generateLegend();
+                
                 $("#source").text(json.source);
             }
         });
-      var ctx = document.getElementById("chart-line").getContext("2d");
-      var myLine = new Chart(ctx).Line(lineChartData, {
-        scaleShowVerticalLines: false,
-//        scaleShowLabels: false,
-//        maintainAspectRatio: true,
-        datasetStrokeWidth : 6,
-        pointDotRadius : 6,
-        responsive: true,
-        legendTemplate : "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<datasets.length; i++){%><li><span style=\"background-color:<%=datasets[i].pointColor%>\"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>"
-      });
-
-      document.getElementById('js-legend').innerHTML = myLine.generateLegend();
   }
 
   </script>
