@@ -299,10 +299,19 @@
     	$.each(datas, function(i, obj) {
         	if((!isPc&&i<15)||isPc){
         		html += '<tr>';
-            	html += '<td>' + obj.name +'<i class="zmdi zmdi-favorite danger-color"></i></td>';
+            	html += '<td>' + obj.name;
+            	var buyRate = obj.buyRate;
+            	if(buyRate.indexOf("-")==0){
+            		html+='<i class="zmdi zmdi-favorite danger-color"></i>';
+            	}
+            	html += '</td>';
             	html += '<td>' + obj.realTimePrice +'</td>';
             	html += '<td id=' + obj.code +' ondblclick="updateColumn($(this), \'buyprice\')">' + obj.buyPrice + '</td>';
-            	html += '<td><span class="zmdi zmdi-long-arrow-down danger-color f-s-18"></span>' + obj.buyRate +'</td>';
+            	html += '<td>' + obj.buyRate;
+            	if(buyRate.indexOf("-")==0){
+            		html += '<span class="zmdi zmdi-long-arrow-down danger-color f-s-18"></span>';
+            	}
+            	html += '</td>';
             	html += '<td>' + obj.maxRate +'</td>';
             	html += '<td>' + obj.ratePercent +'</td>';
             	html += '<td><small><a href="'+obj.PBPEUrl+'" target="_blank">PE/PB</a></small></td>';
