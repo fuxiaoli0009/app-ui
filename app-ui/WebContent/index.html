@@ -76,9 +76,10 @@
               			<h5 class="content-title pull-left">今日涨跌</h5>
               		</div>
             		<div class="content">
-            			<button id="szRatePercent" type="button" class="btn btn-primary"/>
+            			<button id="szRatePercent" type="button" class="btn btn-primary"></button>
 		                <button id="hsAverageRatePercent" type="button" class="btn btn-success"></button>
 		                <button id="czRatePercent" type="button" class="btn btn-danger"></button>
+		                <button id="chosenAverageRatePercent" type="button" class="btn btn-warning"></button>
 		                <button id="starAverageRatePercent" type="button" class="btn btn-warning"></button>
 		            </div>
 		        </div>
@@ -134,7 +135,6 @@
 				                  <th>涨跌</th>
 				                  <th>PB/PE</th>
 				                  <th>操作</th>
-				                  <th>代码</th>
 			                    </tr>
 		                    </thead>
 		                    <tbody id = "hsStocks">
@@ -155,7 +155,6 @@
 			                  	  <th>涨跌</th>
 			                  	  <th>PB/PE</th>
 			                  	  <th>操作</th>
-			                  	  <th>代码</th>
 		                        </tr>
 		                    </thead>
 		                    <tbody id = "starStocks">
@@ -176,7 +175,6 @@
 				                  <th>涨跌</th>
 				                  <th>PB/PE</th>
 				                  <th>操作</th>
-				                  <th>代码</th>
 			                    </tr>
 			                </thead>
 		                    <tbody id = "hkStocks">
@@ -206,6 +204,19 @@
 				</div>
 			</div>
 		</div>
+		
+		<div class="row">
+	        <div class="col-lg-12">
+	            <div class="content-box">
+	            	<div class="head success-bg clearfix">
+              			<h5 class="content-title pull-left">操作</h5>
+              		</div>
+            		<div class="content">
+            			<button type="button" class="btn btn-primary" onclick="getCodes()">自选</button>
+		            </div>
+		        </div>
+            </div>
+        </div>
 		
     </div>
     <footer id="source" class="page-footer">abc</footer>
@@ -241,6 +252,10 @@
    	    }
    	    return flag;
    	}
+    
+    function getCodes(){
+    	window.location.href = 'content.html';
+    }
     
     function updateColumn(tdObject, column){
         var id = tdObject.attr("id");
@@ -316,11 +331,6 @@
             	html += '<td>' + obj.ratePercent +'</td>';
             	html += '<td><small><a href="'+obj.PBPEUrl+'" target="_blank">PE/PB</a></small></td>';
             	html += '<td><small><button id=' + obj.code +'  type="button" class="btn btn-primary btn-xs" onclick="deleteStock($(this))">删除</button></small></td>';
-            	if(isPc){
-            		html += '<td rowspan="2">' + obj.code +'</td>';
-            	}else{
-            		html += '<td>' + obj.code +'</td>';
-            	}
             	html += '</tr>';
         	}
         	if(isPc){
@@ -352,16 +362,17 @@
             	var json = eval("("+data+")");
             	var hsAverageRatePercent = json.hsAverageRatePercent;
             	var starAverageRatePercent = json.starAverageRatePercent;
+            	var chosenAverageRatePercent = json.chosenAverageRatePercent;
             	var szRatePercent = json.szRatePercent;
             	var czRatePercent = json.czRatePercent;
             	var hsStocks = json.hsStocks;
             	var hkStocks = json.hkStocks;
             	var starStocks = json.starStocks;
             	var starCloseIndexs = json.starCloseIndexs;
-            	console.log(starCloseIndexs);
             	$("#szRatePercent").text("上证 "+szRatePercent);
             	$("#czRatePercent").text("创指 "+czRatePercent);
             	$("#hsAverageRatePercent").text("自选 "+hsAverageRatePercent);
+            	$("#chosenAverageRatePercent").text("我的 "+chosenAverageRatePercent);
             	$("#starAverageRatePercent").text("科创 "+starAverageRatePercent);
             	var html = getHtml(hsStocks);
                 $("#hsStocks").html(html);
