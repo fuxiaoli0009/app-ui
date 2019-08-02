@@ -312,7 +312,7 @@
     	var isPc = isPC();
     	var html = "";
     	$.each(datas, function(i, obj) {
-        	if((!isPc&&i<15)||isPc){
+        	if((!isPc&&i<30)||isPc){
         		html += '<tr>';
             	html += '<td>' + obj.name;
             	var buyRate = obj.buyRate;
