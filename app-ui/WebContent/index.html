@@ -107,7 +107,7 @@
 		  <div class="col-md-12">
             <div class="content-box">
             	<div class="head primary-bg clearfix">
-            		<h5 class="content-title pull-left">汇总信息</h5>
+            		<h5 class="content-title pull-left">汇总信息 <button id="operate" type="button" class="btn btn-primary" onclick="showAndHideByTable()">展开折叠</button></h5>
 		        </div>
                 <div class="m-b-20">
                     <ul class="nav nav-tabs">
@@ -334,7 +334,7 @@
             	html += '</tr>';
         	}
         	if(isPc){
-        		html += '<td id="' + obj.code +'" colspan="8" ondblclick="updateColumn($(this), \'description\')">&nbsp;&nbsp;' + obj.description +'</td>';
+        		html += '<tr><td id="' + obj.code +'" colspan="8" ondblclick="updateColumn($(this), \'description\')">&nbsp;&nbsp;' + obj.description +'</td></tr>';
         	}
         });
     	return html;
@@ -349,6 +349,27 @@
     		labels.push('');
     	});
     	return data;
+    }
+    
+    function showAndHideByTable(){
+    	showAndHide(document.getElementById("hsStocks"));
+    	showAndHide(document.getElementById("hkStocks"));
+    	showAndHide(document.getElementById("starStocks"));
+    }
+    
+    function showAndHide(table){
+    	if(isPC()){
+    		for(i=0;i<table.children.length;i++){
+    			//奇数行
+    			if(i%2==1){
+    				if(table.children[i].style.display == 'none'){
+    					table.children[i].style.display = 'table-row';
+    				}else{
+    					table.children[i].style.display = 'none';
+    				}
+    			}
+    		}
+    	}
     }
     
     window.onload = function(){
