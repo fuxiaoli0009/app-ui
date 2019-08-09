@@ -213,6 +213,7 @@
               		</div>
             		<div class="content">
             			<button type="button" class="btn btn-primary" onclick="getCodes()">自选</button>
+            			<button id="showWarningInfos" type="button" class="btn btn-primary" onclick="showWarningInfos()">预警信息</button>
 		            </div>
 		        </div>
             </div>
@@ -255,6 +256,10 @@
     
     function getCodes(){
     	window.location.href = 'content.html';
+    }
+    
+    function showWarningInfos(){
+    	window.location.href = 'warningInfos.html';
     }
     
     function updateColumn(tdObject, column){
@@ -373,6 +378,11 @@
     }
     
     window.onload = function(){
+    	if(!isPC()){
+    		$("#showWarningInfos").hide();
+    	}else{
+    		$("#showWarningInfos").show();
+    	}
     	$.ajax({
             type: "post",
             url: homeUrl + "indexNew",
