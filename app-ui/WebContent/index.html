@@ -192,14 +192,15 @@
         	<div class="col-md-12">
          		<div class="content-box">
          			<div class="head danger-bg clearfix">
-              			<h5 class="content-title pull-left">Excel上传数据</h5>
+              			<h5 class="content-title pull-left">xlsx Excel上传数据</h5>
             		</div>
             		<div class="content">
 				        <form method="post" enctype="multipart/form-data" id="form" action="http://118.24.211.79:8081/excel/parse">
 						    <input type="file" name="filename"/>
 						    <input type="submit" value="提交上传"/>
 						</form>
-						格式：type、code、name、maxValue
+						xlsx格式1:新增，表头type、code、name、buyPrice、maxValue（每列都为实际值）<br/>
+						xlsx格式2:更新，表头type、code、name、buyPrice、maxValue（code和maxValue为实际值，其它列填'0'，定期更新）
 				    </div>
 				</div>
 			</div>
@@ -317,7 +318,7 @@
     	var isPc = isPC();
     	var html = "";
     	$.each(datas, function(i, obj) {
-        	if((!isPc&&i<30)||isPc){
+        	if((!isPc&&i<60)||isPc){
         		html += '<tr>';
             	html += '<td>' + obj.name;
             	var buyRate = obj.buyRate;
